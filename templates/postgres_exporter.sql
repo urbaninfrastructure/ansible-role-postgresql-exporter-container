@@ -3,7 +3,9 @@ ALTER USER {{ postgres_exporter_postgres_user }} SET SEARCH_PATH TO postgres_exp
 
 -- If deploying as non-superuser (for example in AWS RDS), uncomment the GRANT
 -- line below and replace <MASTER_USER> with your root user.
--- GRANT postgres_exporter TO <MASTER_USER>
+{% if postgres_exporter_non_superuser %}
+GRANT postgres_exporter TO {{ postgres_exporter_master_user }}
+{% endif %}
 CREATE SCHEMA postgres_exporter;
 GRANT USAGE ON SCHEMA postgres_exporter TO {{ postgres_exporter_postgres_user }};
 

@@ -1,1 +1,5 @@
 postgres_exporter_host_address: 0.0.0.0
+postgres_exporter_port: 9187
+postgres_exporter_master_user: postgres
+postgres_exporter_non_superuser: false
+postgres_exporter_postgres_user: postgres_exporter
