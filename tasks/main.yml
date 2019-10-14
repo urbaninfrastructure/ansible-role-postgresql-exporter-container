@@ -12,7 +12,7 @@
 
 - name: run the DDL script
   command: psql "host={{ postgres_exporter_postgres_host }} port={{ postgres_exporter_postgres_port }} user={{ postgres_exporter_master_user }} dbname=postgres sslmode=disable password={{ postgres_exporter_master_password }}" -f /root/postgres_exporter.sql
-  when: result.rc != 0
+  when: result is failed
 
 - name: start a PostgreSQL Prometheus exporter container
   docker_container:
