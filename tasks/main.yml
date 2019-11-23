@@ -3,6 +3,7 @@
 
 - name: install psql
   apt: name=postgresql-client
+  when: "ansible_os_family == 'Debian'"
 
 - name: check if objects already exist
   shell: psql "host={{ postgres_exporter_postgres_host }} port={{ postgres_exporter_postgres_port }} user={{ postgres_exporter_master_user }} dbname=postgres sslmode=disable password={{ postgres_exporter_master_password }}" -tAc "SELECT 1 FROM pg_roles WHERE rolname='{{ postgres_exporter_postgres_user }}'" | grep -v "Tim" | grep -q 1
