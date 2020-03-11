@@ -20,7 +20,7 @@
 
 - name: start a PostgreSQL Prometheus exporter container
   docker_container:
-    name: postgres-exporter
+    name: postgres-exporter-{{ postgres_exporter_port }}
     image: wrouesnel/postgres_exporter
     state: started
     recreate: yes
