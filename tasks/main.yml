@@ -35,4 +35,5 @@
       - "{{ postgres_exporter_host_address }}:{{ postgres_exporter_port }}:9187"
     env:
       DATA_SOURCE_NAME: "user={{ postgres_exporter_postgres_user }} password={{ postgres_exporter_postgres_password }} host={{ postgres_exporter_postgres_host }} sslmode=disable port={{ postgres_exporter_postgres_port }} dbname=postgres"
-			PG_EXPORTER_EXTEND_QUERY_PATH: /root/queries.yml
+      PG_EXPORTER_EXTEND_QUERY_PATH: "/root/queries.yml"
+      PG_EXPORTER_AUTO_DISCOVER_DATABASES: "true"
