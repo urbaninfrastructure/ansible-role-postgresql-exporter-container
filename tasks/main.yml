@@ -1,6 +1,9 @@
 - name: put a DDL script
   template: src=postgres_exporter.sql dest=/root/postgres_exporter.sql
 
+- name: add extended queries file
+  template: src=queries.yml dest=/root/queries.yml
+
 - name: install psql
   apt: name=postgresql-client
   when: "ansible_os_family == 'Debian'"
@@ -32,3 +35,4 @@
       - "{{ postgres_exporter_host_address }}:{{ postgres_exporter_port }}:9187"
     env:
       DATA_SOURCE_NAME: "user={{ postgres_exporter_postgres_user }} password={{ postgres_exporter_postgres_password }} host={{ postgres_exporter_postgres_host }} sslmode=disable port={{ postgres_exporter_postgres_port }} dbname=postgres"
+			PG_EXPORTER_EXTEND_QUERY_PATH: /root/queries.yml
